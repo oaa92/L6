@@ -31,6 +31,7 @@ struct ContentView: View {
                 }
             })
         }
+        .background()
         .onTapGesture {
             let orientation: Orientation
             if self.orientation == .horizontal {
