@@ -23,6 +23,18 @@ struct ContentView: View {
                     .foregroundStyle(Color.blue)
                     .frame(width: rectSize, height: rectSize)
                     .offset(x: offsetsX[index], y: offsetsY[index])
+                    .onTapGesture {
+                        let orientation: Orientation
+                        if self.orientation == .horizontal {
+                            orientation = .diagonal
+                        }
+                        else {
+                            orientation = .horizontal
+                        }
+                        withAnimation {
+                            update(orientation: orientation)
+                        }
+                    }
             }
             .onAppear(perform: {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -30,19 +42,6 @@ struct ContentView: View {
                     update(orientation: orientation)
                 }
             })
-        }
-        .background()
-        .onTapGesture {
-            let orientation: Orientation
-            if self.orientation == .horizontal {
-                orientation = .diagonal
-            }
-            else {
-                orientation = .horizontal
-            }
-            withAnimation {
-                update(orientation: orientation)
-            }
         }
     }
 
